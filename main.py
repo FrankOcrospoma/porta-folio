@@ -87,14 +87,17 @@ def get_time_difference():
 
     # Devolver la diferencia como JSON
     return jsonify({'difference': difference})
-@app.route('/ejecutar-main-timer')
-def ejecutar_main():
-    # Aquí puedes poner el código para ejecutar main.py
-    # Por ejemplo:
-    import os
-    os.system('python main.py')
-    return 'Se ejecutó main.py'
+from flask import send_file
+import os
 
+@app.route('/Curriculum-Frank.pdf')
+def descargar_cv():
+    # Ruta al archivo PDF (ruta relativa)
+    nombre_archivo = 'Curriculum-Frank.pdf'
+    ruta_archivo = os.path.join(os.getcwd(), nombre_archivo)
+
+    # Envía el archivo como respuesta
+    return send_file(ruta_archivo, as_attachment=True)
 
 
 from agua import ejecutar_algoritmo_genetico
